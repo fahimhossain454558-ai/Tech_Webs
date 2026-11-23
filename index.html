@@ -22,18 +22,11 @@ header{padding:22px 0}
 h1{margin:0;font:600 clamp(48px,10vw,100px)/1 var(--serif);letter-spacing:-.01em}
 .lede{max-width:500px;margin:20px auto 0;color:var(--muted);font-size:17px}
 .rule{width:96px;height:1px;margin:28px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.feature{position:relative;display:grid;color:inherit;text-decoration:none;transition:border-color .2s;grid-template-columns:1.5fr 1fr;gap:28px;align-items:center;margin:8px 0 44px;padding:clamp(26px,4.5vw,50px);border:1px solid #d9b97080;border-radius:26px;overflow:hidden;background:linear-gradient(135deg,#17342500 0%,#143023 0%),linear-gradient(135deg,#183a29,#0a1b13 72%);box-shadow:0 30px 80px #0009,inset 0 1px #f2dda62b}
-.feature::after{content:"";position:absolute;right:-90px;bottom:-130px;width:360px;height:360px;border-radius:50%;background:radial-gradient(#d9b97035,transparent 70%);pointer-events:none}
 .badge{display:inline-block;padding:4px 12px;border-radius:999px;color:#1a1407;background:linear-gradient(100deg,#c49a4a,#f2dda6);font-size:12px;font-weight:700}
-.feature h2{margin:16px 0 10px;font:600 clamp(36px,6vw,60px)/1.02 var(--serif)}
-.feature p{max-width:440px;margin:0 0 26px;color:#b6c6bb}
-.crest{display:grid;width:min(100%,230px);aspect-ratio:1;margin:auto;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--gold2);font:italic 600 clamp(64px,9vw,100px) var(--serif);background:radial-gradient(circle,#d9b9701f,transparent 68%);box-shadow:inset 0 0 0 14px #0a1b13,inset 0 0 0 15px var(--line)}
-.actions{display:flex;flex-wrap:wrap;gap:10px}
 .btn{display:inline-flex;min-height:46px;align-items:center;justify-content:center;padding:11px 24px;border:1px solid var(--gold);border-radius:999px;color:var(--gold2);font:600 14px var(--sans);text-decoration:none;cursor:pointer;background:transparent;transition:background .2s,box-shadow .2s}
 .btn:hover{background:#d9b9701f}
 .btn.gold{color:#1a1407;border-color:transparent;background:linear-gradient(100deg,#c49a4a,#f2dda6 55%,#d2ae62)}
-.btn.gold:hover,.feature:hover .btn.gold,.card:hover .btn.gold{box-shadow:0 8px 30px #d9b97048}
-.feature:hover{border-color:#d9b970}
+.btn.gold:hover,.card:hover .btn.gold{box-shadow:0 8px 30px #d9b97048}
 .bar{position:sticky;top:0;z-index:5;padding:14px 0;background:#06130eeb;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .bar .wrap{display:flex;flex-direction:column;gap:12px}
 .search{position:relative;display:block}
@@ -50,10 +43,17 @@ h1{margin:0;font:600 clamp(48px,10vw,100px)/1 var(--serif);letter-spacing:-.01em
 .chip[aria-pressed=true] b{color:#1a1407}
 .meta{margin:22px 0 16px;color:var(--muted);font-size:14px}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding-bottom:72px}
-.card{position:relative;display:flex;min-width:0;color:inherit;text-decoration:none;flex-direction:column;padding:24px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,var(--panel2),var(--panel));transition:border-color .2s}
+.card{--a:var(--gold);position:relative;display:flex;min-width:0;color:inherit;text-decoration:none;flex-direction:column;padding:12px 12px 22px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,var(--panel2),var(--panel));transition:border-color .2s}
 .card:hover{border-color:#d9b970a6}
-.top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.cat{color:var(--gold);font-size:13px;font-weight:600}
+.thumb{display:grid;aspect-ratio:16/9;place-items:center;border:1px solid var(--line);border-radius:10px;color:var(--a);background:radial-gradient(circle at 75% 15%,#ffffff14,transparent 60%),linear-gradient(135deg,#183a29,#0a1b13)}
+.thumb svg{width:62%;height:auto;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.thumb .f{fill:currentColor;stroke:none}
+.thumb .d{opacity:.5}
+.thumb .bg{fill:#0d2419}
+.thumb text{fill:currentColor;stroke:none;font:700 14px var(--serif)}
+.body{display:flex;flex:1;flex-direction:column;padding:16px 10px 0}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.cat{color:var(--a);font-size:13px;font-weight:600}
 .top .badge{padding:2px 10px;font-size:11px}
 .card h3{margin:0;font:600 27px/1.12 var(--serif);overflow-wrap:anywhere}
 .card p{margin:10px 0 22px;color:var(--muted);font-size:14px}
@@ -64,8 +64,8 @@ footer{padding:26px 0 34px;border-top:1px solid var(--line);color:#7c9084;font-s
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px}
 :focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
 .sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.feature{grid-template-columns:1fr}.crest{display:none}}
-@media(max-width:560px){.wrap{width:calc(100% - 28px)}.grid{grid-template-columns:1fr;gap:13px}.search kbd{display:none}.card{padding:21px}.feature .btn{display:flex}}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.wrap{width:calc(100% - 28px)}.grid{grid-template-columns:1fr;gap:13px}.search kbd{display:none}}
 @media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -77,18 +77,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
     <h1>My Projects</h1>
     <p class="lede">Tap any project to open it. Search or pick a category to find what you need in seconds.</p>
     <div class="rule"></div>
-  </section>
-
-  <section class="wrap" aria-label="Latest project">
-    <a class="feature" href="https://fahimhossain454558-ai.github.io/LUXURY-CV-V2/" target="_blank" rel="noopener noreferrer">
-      <div>
-        <span class="badge">New</span>
-        <h2>Luxury CV V2</h2>
-        <p>The second edition of my luxury CV and résumé.</p>
-        <span class="btn gold">Open live site</span>
-      </div>
-      <div class="crest" aria-hidden="true">V2</div>
-    </a>
   </section>
 
   <section aria-label="Browse projects">
@@ -109,28 +97,30 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 2
 <footer><div class="wrap"><span>Made by Fahim, <span id="year"></span></span><span>Tap any card to open the project.</span></div></footer>
 
 <script>
-const U="https://fahimhossain454558-ai.github.io/",G="https://github.com/fahimhossain454558-ai/";
-// [repo, category, title, description, hasLiveSite, isNew]
+const U="https://fahimhossain454558-ai.github.io/";
+const K={Creative:"#f3ecdc",Nagad:"#f4a460",Community:"#8fd6a8","Trade licence":"#d9b970"};
+
+// Thumbnails: simple line icons that show what each project is
+const I={
+qr:'<rect x="30" y="10" width="60" height="60" rx="5"/><path d="M38 18h16v16H38zM66 18h16v16H66zM38 46h16v16H38z"/><path class="f" d="M42 22h8v8h-8zM70 22h8v8h-8zM42 50h8v8h-8zM66 46h6v6h-6zM76 50h6v6h-6zM66 58h6v6h-6zM76 62h6v4h-6z"/>',
+school:'<path d="M12 34 60 14l48 20zM22 34v38M98 34v38M8 72h104M52 72V52h16v20M30 44h12v10H30zM78 44h12v10H78zM60 14V3"/><path class="f" d="M60 3h11l-3.5 3.5L71 10H60z"/>',
+alumni:'<circle class="d" cx="26" cy="40" r="6.5"/><path class="d" d="M13 62c0-8 6-13 13-13M107 62c0-8-6-13-13-13"/><circle class="d" cx="94" cy="40" r="6.5"/><circle cx="60" cy="34" r="8"/><path d="M42 62c0-11 8-17 18-17s18 6 18 17M44 20l16-8 16 8-16 8zM76 20v7"/><text x="60" y="76" text-anchor="middle">2026</text>',
+paper:'<path d="M34 4h36l16 16v56H34zM70 4v16h16M42 32h36M42 42h36M42 52h20"/><circle class="bg" cx="84" cy="60" r="13"/><path d="M77 60l5 5 9-10"/>',
+cv:'<path d="M34 4h52v72H34z"/><circle cx="48" cy="20" r="6"/><path d="M60 16h18M60 24h12M42 38h10M42 46h10M42 54h10M58 38h20M58 46h20M58 54h20M42 66h36"/><path class="f" d="M100 8l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/>',
+licence:'<path d="M34 4h52v72H34zM44 14h32M44 23h32M44 30h22"/><circle cx="60" cy="52" r="10"/><circle class="f" cx="60" cy="52" r="3.5"/><path d="M54 61l-3 13 9-5 9 5-3-13"/>'
+};
+I.cv2=I.cv+'<rect class="bg" x="76" y="52" width="32" height="20" rx="10"/><text x="92" y="66.5" text-anchor="middle">V2</text>';
+
+// [repo, category, title, what it does, icon, isNew]  (newest first)
 const L=[
-["LUXURY-CV-V2","Creative","Luxury CV V2","Second edition of my luxury CV and résumé.",1,1],
-["fahimhossain454558-ai.github.io","Portfolio","Portfolio Home","Personal GitHub Pages repository. No live page yet.",0],
-["BANGLADESH-TRADE-LICENCE-08-11-2026-V2-15-11-2026-","Trade licence","Trade Licence 15 Nov 2026","Bangladesh trade licence, version dated 15 Nov 2026.",1],
-["BANGLADESH-TRADE-LICENCE-08-11-2026-V2-14-11-2026","Trade licence","Trade Licence 14 Nov 2026","Bangladesh trade licence, version dated 14 Nov 2026.",1],
-["Luxury-Cv","Creative","Luxury CV","A luxury CV and résumé project.",1],
-["Nagad-Uddokta-Paper-Ready-V2","Nagad","Nagad Uddokta Paper Ready V2","Nagad Uddokta paper-ready project, version 2.",1],
-["Nagad-Uddokta-Paper-Ready","Nagad","Nagad Uddokta Paper Ready","Nagad Uddokta paper-ready project.",1],
-["BANGLADESH-TRADE-LICENCE-08-11-2026-V2-10-11-2026","Trade licence","Trade Licence 10 Nov 2026","Bangladesh trade licence, version dated 10 Nov 2026.",1],
-["Alumni-Reunion-2026","Community","Alumni Reunion 2026","Alumni reunion project for 2026.",1],
-["BANGLADESH-TRADE-LICENCE-08-11-2026-V2","Trade licence","Trade Licence Version 2","Bangladesh trade licence, version 2.",1],
-["BANGLADESH-TRADE-LICENCE-08-11-2026","Trade licence","Trade Licence 08 Nov 2026","Bangladesh trade licence project.",1],
-["BANGLADESH-TRADE-LICENCE-WITH-SUPERVISOR-SIGNATURE","Trade licence","Trade Licence with Supervisor Signature","Trade licence project with supervisor signature.",1],
-["Bangladesh-Trade-Licence-Mobile-Version","Trade licence","Trade Licence Mobile Version","Mobile version of the Bangladesh trade licence project.",1],
-["Muradpur-Adarsha-High-School-Punormilon","Community","Muradpur Adarsha High School Reunion","Muradpur Adarsha High School reunion project.",1],
-["Nagad-Custom-QR-Code","Nagad","Nagad Custom QR Code","Custom QR code project for Nagad.",1],
-["BD-Trade-Licence-Professional","Trade licence","BD Trade Licence Professional","Professional Bangladesh trade licence project.",1],
-["trade-licence-spa","Trade licence","Trade Licence Single Page App","Single-page trade licence application.",1],
-["BD-Trade-Licence","Trade licence","BD Trade Licence","Bangladesh trade licence project.",1]
-].map(([n,c,t,d,l,w])=>({n,c,t,d,l,w}));
+["LUXURY-CV-V2","Creative","Luxury CV V2","Second edition of the luxury CV and résumé.","cv2",1],
+["BANGLADESH-TRADE-LICENCE-08-11-2026-V2-15-11-2026-","Trade licence","Trade Licence 15 Nov 2026","Bangladesh trade licence, version dated 15 Nov 2026.","licence"],
+["Luxury-Cv","Creative","Luxury CV","A luxury-style CV and résumé.","cv"],
+["Nagad-Uddokta-Paper-Ready-V2","Nagad","Nagad Uddokta Paper Ready V2","Print-ready paper for Nagad Uddokta, version 2.","paper"],
+["Alumni-Reunion-2026","Community","Alumni Reunion 2026","Alumni reunion page for 2026.","alumni"],
+["Muradpur-Adarsha-High-School-Punormilon","Community","Muradpur Adarsha High School Reunion","Reunion (Punormilon) page for Muradpur Adarsha High School.","school"],
+["Nagad-Custom-QR-Code","Nagad","Nagad Custom QR Code","Custom-designed QR code for Nagad.","qr"]
+].map(([n,c,t,d,i,w])=>({n,c,t,d,i,w}));
 
 const $=s=>document.querySelector(s),grid=$("#grid"),q=$("#q"),chips=$("#chips"),meta=$("#meta");
 const cats=["All",...new Set(L.map(p=>p.c))];
@@ -148,14 +138,15 @@ function setCat(c){
 function render(){
   const s=q.value.trim().toLowerCase();
   const v=L.filter(p=>(cur==="All"||p.c===cur)&&`${p.n} ${p.c} ${p.t} ${p.d}`.toLowerCase().includes(s));
-  grid.innerHTML=v.length?v.map(p=>{
-    const url=p.l?U+p.n+"/":G+p.n;
-    return `<a class="card" href="${url}" ${ext}>
-      <div class="top"><span class="cat">${p.c}</span>${p.w?'<span class="badge">New</span>':""}</div>
-      <h3>${p.t}</h3>
-      <p>${p.d}</p>
-      <span class="btn gold">${p.l?"Open live site":"Open on GitHub"}</span>
-    </a>`}).join("")
+  grid.innerHTML=v.length?v.map(p=>`<a class="card" href="${U+p.n}/" ${ext} style="--a:${K[p.c]}">
+      <div class="thumb"><svg viewBox="0 0 120 80" aria-hidden="true">${I[p.i]}</svg></div>
+      <div class="body">
+        <div class="top"><span class="cat">${p.c}</span>${p.w?'<span class="badge">New</span>':""}</div>
+        <h3>${p.t}</h3>
+        <p>${p.d}</p>
+        <span class="btn gold">Open live site</span>
+      </div>
+    </a>`).join("")
     :'<div class="empty"><p>No projects found. Try a different word or category.</p><button class="btn gold" type="button" id="reset">Show all projects</button></div>';
   meta.textContent=`${v.length} ${v.length===1?"project":"projects"}${cur==="All"?"":" in "+cur}`;
 }
