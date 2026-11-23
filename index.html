@@ -1,331 +1,171 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f7f2">
-  <meta name="description" content="Explore Fahim's public projects, from trade licence tools to community sites and creative work.">
-  <title>FahimKing | My Projects</title>
-  <style>
-    :root {
-      color-scheme: light;
-      --ink: #17241f;
-      --muted: #64736c;
-      --paper: #f5f7f2;
-      --line: #e2e8e1;
-      --green: #176b4a;
-      --mint: #dff3e8;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      min-width: 320px;
-      margin: 0;
-      color: var(--ink);
-      background: radial-gradient(ellipse at 86% 5%, #d2efdd8c, transparent 29rem), var(--paper);
-      line-height: 1.5;
-    }
-
-    .wrap { width: min(1120px, calc(100% - 40px)); margin: auto; }
-    header { padding: 22px 0; border-bottom: 1px solid var(--line); }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--ink);
-      font-weight: 750;
-      text-decoration: none;
-    }
-
-    .mark {
-      display: grid;
-      width: 34px;
-      height: 34px;
-      place-items: center;
-      border-radius: 11px;
-      color: white;
-      background: var(--green);
-      font-size: 14px;
-    }
-
-    main { padding: clamp(48px, 9vw, 96px) 0 70px; }
-    .intro { max-width: 720px; margin-bottom: 36px; }
-
-    .eyebrow {
-      margin: 0 0 14px;
-      color: var(--green);
-      font-size: 12px;
-      font-weight: 750;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      display: inline-block;
-      width: 7px;
-      height: 7px;
-      margin: 0 8px 1px 0;
-      border-radius: 50%;
-      background: #45a875;
-      content: "";
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(38px, 7vw, 66px);
-      line-height: 1.05;
-      letter-spacing: -.065em;
-    }
-
-    .lede { max-width: 570px; margin: 18px 0 0; color: var(--muted); font-size: 18px; }
-    .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 22px; }
-    .filters { display: flex; flex-wrap: wrap; gap: 8px; }
-
-    .filter {
-      min-height: 38px;
-      padding: 8px 13px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: #43524b;
-      background: #ffffffb3;
-      cursor: pointer;
-      font: inherit;
-      font-size: 13px;
-      font-weight: 650;
-    }
-
-    .filter[aria-pressed="true"] { border-color: var(--green); color: white; background: var(--green); }
-    .filter:focus-visible, .search:focus-visible, .project-link:focus-visible { outline: 3px solid #79c99d; outline-offset: 3px; }
-
-    .search {
-      width: min(100%, 260px);
-      min-height: 42px;
-      padding: 9px 13px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      color: var(--ink);
-      background: white;
-      font: inherit;
-      font-size: 14px;
-    }
-
-    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
-
-    .card {
-      display: flex;
-      min-width: 0;
-      min-height: 190px;
-      flex-direction: column;
-      padding: 21px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: white;
-      box-shadow: 0 12px 35px #17241f0f;
-      transition: transform .18s ease, border-color .18s ease;
-    }
-
-    .card:hover { transform: translateY(-3px); border-color: #b7c9bd; }
-    .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
-
-    .category {
-      padding: 5px 9px;
-      border-radius: 999px;
-      color: #10563a;
-      background: var(--mint);
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .repo-icon {
-      display: grid;
-      width: 30px;
-      height: 30px;
-      place-items: center;
-      border: 1px solid var(--line);
-      border-radius: 9px;
-      color: #66756d;
-    }
-
-    .repo-icon svg { width: 16px; height: 16px; }
-    h2 { margin: 0; font-size: 16px; line-height: 1.4; letter-spacing: -.02em; overflow-wrap: anywhere; }
-    h2 a { color: inherit; text-decoration: none; }
-    h2 a:hover { color: var(--green); text-decoration: underline; }
-    .card p { margin: 8px 0 18px; color: var(--muted); font-size: 13px; }
-
-    .project-link {
-      display: inline-flex;
-      width: fit-content;
-      align-items: center;
-      gap: 7px;
-      margin-top: auto;
-      color: var(--green);
-      font-size: 13px;
-      font-weight: 750;
-      text-decoration: none;
-    }
-
-    .project-link:hover { color: #10563a; text-decoration: underline; }
-    .project-link svg { width: 14px; height: 14px; }
-
-    .empty {
-      grid-column: 1 / -1;
-      padding: 40px;
-      border: 1px dashed #c9d5cd;
-      border-radius: 16px;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    footer { padding: 22px 0 30px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
-    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; }
-
-    @media (max-width: 850px) {
-      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-
-    @media (max-width: 560px) {
-      .wrap { width: calc(100% - 30px); }
-      header { padding: 18px 0; }
-      main { padding-top: 48px; }
-      .toolbar { align-items: stretch; }
-      .filter { min-height: 36px; padding: 7px 10px; }
-      .search { width: 100%; }
-      .grid { grid-template-columns: 1fr; gap: 11px; }
-      .card { min-height: 175px; padding: 19px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { transition-duration: .01ms !important; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#06130e">
+<meta name="description" content="Explore Fahim’s public projects: trade licence tools, Nagad projects, community sites and luxury CV designs.">
+<title>FahimKing | My Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#06130e;--panel:#0b1d15;--panel2:#11291d;--ink:#f3ecdc;--muted:#9db0a4;--gold:#d9b970;--gold2:#f2dda6;--line:#d9b97033;--serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;--sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{min-width:320px;margin:0;color:var(--ink);font-family:var(--sans);line-height:1.55;background:radial-gradient(60rem 30rem at 85% -8%,#1f6b4a40,transparent 70%),radial-gradient(40rem 22rem at -5% 25%,#d9b9701a,transparent 70%),var(--bg)}
+.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+header{padding:22px 0}
+.brand{display:inline-flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none;font:700 23px var(--serif);letter-spacing:.03em}
+.mark{display:grid;width:40px;height:40px;place-items:center;border:1px solid var(--gold);border-radius:50%;color:var(--gold2);font:700 16px var(--serif)}
+.hero{padding:clamp(30px,6vw,68px) 0 34px;text-align:center}
+h1{margin:0;font:600 clamp(48px,10vw,100px)/1 var(--serif);letter-spacing:-.01em}
+.lede{max-width:500px;margin:20px auto 0;color:var(--muted);font-size:17px}
+.rule{width:96px;height:1px;margin:28px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.feature{position:relative;display:grid;color:inherit;text-decoration:none;transition:border-color .2s;grid-template-columns:1.5fr 1fr;gap:28px;align-items:center;margin:8px 0 44px;padding:clamp(26px,4.5vw,50px);border:1px solid #d9b97080;border-radius:26px;overflow:hidden;background:linear-gradient(135deg,#17342500 0%,#143023 0%),linear-gradient(135deg,#183a29,#0a1b13 72%);box-shadow:0 30px 80px #0009,inset 0 1px #f2dda62b}
+.feature::after{content:"";position:absolute;right:-90px;bottom:-130px;width:360px;height:360px;border-radius:50%;background:radial-gradient(#d9b97035,transparent 70%);pointer-events:none}
+.badge{display:inline-block;padding:4px 12px;border-radius:999px;color:#1a1407;background:linear-gradient(100deg,#c49a4a,#f2dda6);font-size:12px;font-weight:700}
+.feature h2{margin:16px 0 10px;font:600 clamp(36px,6vw,60px)/1.02 var(--serif)}
+.feature p{max-width:440px;margin:0 0 26px;color:#b6c6bb}
+.crest{display:grid;width:min(100%,230px);aspect-ratio:1;margin:auto;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--gold2);font:italic 600 clamp(64px,9vw,100px) var(--serif);background:radial-gradient(circle,#d9b9701f,transparent 68%);box-shadow:inset 0 0 0 14px #0a1b13,inset 0 0 0 15px var(--line)}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;min-height:46px;align-items:center;justify-content:center;padding:11px 24px;border:1px solid var(--gold);border-radius:999px;color:var(--gold2);font:600 14px var(--sans);text-decoration:none;cursor:pointer;background:transparent;transition:background .2s,box-shadow .2s}
+.btn:hover{background:#d9b9701f}
+.btn.gold{color:#1a1407;border-color:transparent;background:linear-gradient(100deg,#c49a4a,#f2dda6 55%,#d2ae62)}
+.btn.gold:hover,.feature:hover .btn.gold,.card:hover .btn.gold{box-shadow:0 8px 30px #d9b97048}
+.feature:hover{border-color:#d9b970}
+.bar{position:sticky;top:0;z-index:5;padding:14px 0;background:#06130eeb;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;flex-direction:column;gap:12px}
+.search{position:relative;display:block}
+.search input{width:100%;min-height:54px;padding:12px 56px 12px 50px;border:1px solid var(--line);border-radius:14px;color:var(--ink);background:var(--panel);font:500 16px var(--sans)}
+.search input::placeholder{color:#6f8478}
+.search svg{position:absolute;left:18px;top:50%;width:18px;height:18px;transform:translateY(-50%);color:var(--gold)}
+.search kbd{position:absolute;right:14px;top:50%;transform:translateY(-50%);padding:2px 9px;border:1px solid var(--line);border-radius:6px;color:var(--muted);font:12px var(--sans)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;min-height:42px;padding:8px 17px;border:1px solid var(--line);border-radius:999px;color:#d6ddd3;background:transparent;font:600 13px var(--sans);cursor:pointer;transition:border-color .2s}
+.chip:hover{border-color:var(--gold)}
+.chip b{margin-left:7px;color:var(--gold);font-weight:600}
+.chip[aria-pressed=true]{color:#1a1407;border-color:transparent;background:linear-gradient(100deg,#c49a4a,#f2dda6)}
+.chip[aria-pressed=true] b{color:#1a1407}
+.meta{margin:22px 0 16px;color:var(--muted);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding-bottom:72px}
+.card{position:relative;display:flex;min-width:0;color:inherit;text-decoration:none;flex-direction:column;padding:24px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,var(--panel2),var(--panel));transition:border-color .2s}
+.card:hover{border-color:#d9b970a6}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.cat{color:var(--gold);font-size:13px;font-weight:600}
+.top .badge{padding:2px 10px;font-size:11px}
+.card h3{margin:0;font:600 27px/1.12 var(--serif);overflow-wrap:anywhere}
+.card p{margin:10px 0 22px;color:var(--muted);font-size:14px}
+.card .btn{min-height:42px;margin-top:auto;align-self:flex-start;padding:9px 20px;font-size:13px}
+.empty{grid-column:1/-1;padding:56px 20px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);text-align:center}
+.empty .btn{margin-top:16px}
+footer{padding:26px 0 34px;border-top:1px solid var(--line);color:#7c9084;font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.feature{grid-template-columns:1fr}.crest{display:none}}
+@media(max-width:560px){.wrap{width:calc(100% - 28px)}.grid{grid-template-columns:1fr;gap:13px}.search kbd{display:none}.card{padding:21px}.feature .btn{display:flex}}
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <a class="brand" href="#" aria-label="FahimKing projects home">
-        <span class="mark" aria-hidden="true">FK</span>
-        <span>FahimKing</span>
-      </a>
-    </div>
-  </header>
+<header><div class="wrap"><a class="brand" href="#top" aria-label="FahimKing, back to top"><span class="mark" aria-hidden="true">FK</span>FahimKing</a></div></header>
 
-  <main class="wrap">
-    <section class="intro" aria-labelledby="page-title">
-      <p class="eyebrow">A collection of my work</p>
-      <h1 id="page-title">My Projects</h1>
-      <p class="lede">One place to explore my public projects. Pick a project to open its GitHub repository.</p>
-    </section>
+<main>
+  <section class="hero wrap" id="top">
+    <h1>My Projects</h1>
+    <p class="lede">Tap any project to open it. Search or pick a category to find what you need in seconds.</p>
+    <div class="rule"></div>
+  </section>
 
-    <section aria-label="Browse projects">
-      <div class="toolbar">
-        <div class="filters" role="group" aria-label="Filter projects by category">
-          <button class="filter" type="button" data-filter="all" aria-pressed="true">All <span data-count></span></button>
-          <button class="filter" type="button" data-filter="Trade licence" aria-pressed="false">Trade licence</button>
-          <button class="filter" type="button" data-filter="Nagad" aria-pressed="false">Nagad</button>
-          <button class="filter" type="button" data-filter="Community" aria-pressed="false">Community</button>
-          <button class="filter" type="button" data-filter="Creative" aria-pressed="false">Creative</button>
-          <button class="filter" type="button" data-filter="Portfolio" aria-pressed="false">Portfolio</button>
-        </div>
-        <label>
-          <span class="visually-hidden">Search projects</span>
-          <input class="search" type="search" placeholder="Search projects..." autocomplete="off">
-        </label>
+  <section class="wrap" aria-label="Latest project">
+    <a class="feature" href="https://fahimhossain454558-ai.github.io/LUXURY-CV-V2/" target="_blank" rel="noopener noreferrer">
+      <div>
+        <span class="badge">New</span>
+        <h2>Luxury CV V2</h2>
+        <p>The second edition of my luxury CV and résumé.</p>
+        <span class="btn gold">Open live site</span>
       </div>
-      <p class="visually-hidden" id="results" aria-live="polite"></p>
-      <div class="grid" id="projects"></div>
-    </section>
-  </main>
+      <div class="crest" aria-hidden="true">V2</div>
+    </a>
+  </section>
 
-  <footer>
+  <section aria-label="Browse projects">
+    <div class="bar"><div class="wrap">
+      <label class="search"><span class="sr">Search projects</span>
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.6"/><path d="m14 14 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <input id="q" type="search" placeholder="Search projects…" autocomplete="off"><kbd aria-hidden="true">/</kbd>
+      </label>
+      <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+    </div></div>
     <div class="wrap">
-      <span>Made by Fahim · <span id="year"></span></span>
-      <span>Project names open live sites when available; repository links open GitHub.</span>
+      <p class="meta" id="meta" aria-live="polite"></p>
+      <div class="grid" id="grid"></div>
     </div>
-  </footer>
+  </section>
+</main>
 
-  <script>
-    const projects = [
-      { name: "fahimhossain454558-ai.github.io", category: "Portfolio", description: "Personal GitHub Pages repository; no live page is currently available." },
-      { name: "BANGLADESH-TRADE-LICENCE-08-11-2026-V2-15-11-2026-", category: "Trade licence", description: "Bangladesh trade licence project · version dated 15 Nov 2026.", website: "https://fahimhossain454558-ai.github.io/BANGLADESH-TRADE-LICENCE-08-11-2026-V2-15-11-2026-/" },
-      { name: "BANGLADESH-TRADE-LICENCE-08-11-2026-V2-14-11-2026", category: "Trade licence", description: "Bangladesh trade licence project · version dated 14 Nov 2026.", website: "https://fahimhossain454558-ai.github.io/BANGLADESH-TRADE-LICENCE-08-11-2026-V2-14-11-2026/" },
-      { name: "Luxury-Cv", category: "Creative", description: "A luxury CV and résumé project.", website: "https://fahimhossain454558-ai.github.io/Luxury-Cv/" },
-      { name: "Nagad-Uddokta-Paper-Ready-V2", category: "Nagad", description: "Nagad Uddokta paper-ready project · version 2.", website: "https://fahimhossain454558-ai.github.io/Nagad-Uddokta-Paper-Ready-V2/" },
-      { name: "Nagad-Uddokta-Paper-Ready", category: "Nagad", description: "Nagad Uddokta paper-ready project.", website: "https://fahimhossain454558-ai.github.io/Nagad-Uddokta-Paper-Ready/" },
-      { name: "BANGLADESH-TRADE-LICENCE-08-11-2026-V2-10-11-2026", category: "Trade licence", description: "Bangladesh trade licence project · version dated 10 Nov 2026.", website: "https://fahimhossain454558-ai.github.io/BANGLADESH-TRADE-LICENCE-08-11-2026-V2-10-11-2026/" },
-      { name: "Alumni-Reunion-2026", category: "Community", description: "Alumni reunion project for 2026.", website: "https://fahimhossain454558-ai.github.io/Alumni-Reunion-2026/" },
-      { name: "BANGLADESH-TRADE-LICENCE-08-11-2026-V2", category: "Trade licence", description: "Bangladesh trade licence project · version 2.", website: "https://fahimhossain454558-ai.github.io/BANGLADESH-TRADE-LICENCE-08-11-2026-V2/" },
-      { name: "BANGLADESH-TRADE-LICENCE-08-11-2026", category: "Trade licence", description: "Bangladesh trade licence project.", website: "https://fahimhossain454558-ai.github.io/BANGLADESH-TRADE-LICENCE-08-11-2026/" },
-      { name: "BANGLADESH-TRADE-LICENCE-WITH-SUPERVISOR-SIGNATURE", category: "Trade licence", description: "Trade licence project with supervisor signature.", website: "https://fahimhossain454558-ai.github.io/BANGLADESH-TRADE-LICENCE-WITH-SUPERVISOR-SIGNATURE/" },
-      { name: "Bangladesh-Trade-Licence-Mobile-Version", category: "Trade licence", description: "Mobile version of the Bangladesh trade licence project.", website: "https://fahimhossain454558-ai.github.io/Bangladesh-Trade-Licence-Mobile-Version/" },
-      { name: "Muradpur-Adarsha-High-School-Punormilon", category: "Community", description: "Muradpur Adarsha High School reunion project.", website: "https://fahimhossain454558-ai.github.io/Muradpur-Adarsha-High-School-Punormilon/" },
-      { name: "Nagad-Custom-QR-Code", category: "Nagad", description: "Custom QR code project for Nagad.", website: "https://fahimhossain454558-ai.github.io/Nagad-Custom-QR-Code/" },
-      { name: "BD-Trade-Licence-Professional", category: "Trade licence", description: "Professional Bangladesh trade licence project.", website: "https://fahimhossain454558-ai.github.io/BD-Trade-Licence-Professional/" },
-      { name: "trade-licence-spa", category: "Trade licence", description: "Single-page trade licence application.", website: "https://fahimhossain454558-ai.github.io/trade-licence-spa/" },
-      { name: "BD-Trade-Licence", category: "Trade licence", description: "Bangladesh trade licence project.", website: "https://fahimhossain454558-ai.github.io/BD-Trade-Licence/" }
-    ];
+<footer><div class="wrap"><span>Made by Fahim, <span id="year"></span></span><span>Tap any card to open the project.</span></div></footer>
 
-    const projectGrid = document.querySelector("#projects");
-    const searchInput = document.querySelector(".search");
-    const resultMessage = document.querySelector("#results");
-    const filters = [...document.querySelectorAll(".filter")];
-    let activeFilter = "all";
+<script>
+const U="https://fahimhossain454558-ai.github.io/",G="https://github.com/fahimhossain454558-ai/";
+// [repo, category, title, description, hasLiveSite, isNew]
+const L=[
+["LUXURY-CV-V2","Creative","Luxury CV V2","Second edition of my luxury CV and résumé.",1,1],
+["fahimhossain454558-ai.github.io","Portfolio","Portfolio Home","Personal GitHub Pages repository. No live page yet.",0],
+["BANGLADESH-TRADE-LICENCE-08-11-2026-V2-15-11-2026-","Trade licence","Trade Licence 15 Nov 2026","Bangladesh trade licence, version dated 15 Nov 2026.",1],
+["BANGLADESH-TRADE-LICENCE-08-11-2026-V2-14-11-2026","Trade licence","Trade Licence 14 Nov 2026","Bangladesh trade licence, version dated 14 Nov 2026.",1],
+["Luxury-Cv","Creative","Luxury CV","A luxury CV and résumé project.",1],
+["Nagad-Uddokta-Paper-Ready-V2","Nagad","Nagad Uddokta Paper Ready V2","Nagad Uddokta paper-ready project, version 2.",1],
+["Nagad-Uddokta-Paper-Ready","Nagad","Nagad Uddokta Paper Ready","Nagad Uddokta paper-ready project.",1],
+["BANGLADESH-TRADE-LICENCE-08-11-2026-V2-10-11-2026","Trade licence","Trade Licence 10 Nov 2026","Bangladesh trade licence, version dated 10 Nov 2026.",1],
+["Alumni-Reunion-2026","Community","Alumni Reunion 2026","Alumni reunion project for 2026.",1],
+["BANGLADESH-TRADE-LICENCE-08-11-2026-V2","Trade licence","Trade Licence Version 2","Bangladesh trade licence, version 2.",1],
+["BANGLADESH-TRADE-LICENCE-08-11-2026","Trade licence","Trade Licence 08 Nov 2026","Bangladesh trade licence project.",1],
+["BANGLADESH-TRADE-LICENCE-WITH-SUPERVISOR-SIGNATURE","Trade licence","Trade Licence with Supervisor Signature","Trade licence project with supervisor signature.",1],
+["Bangladesh-Trade-Licence-Mobile-Version","Trade licence","Trade Licence Mobile Version","Mobile version of the Bangladesh trade licence project.",1],
+["Muradpur-Adarsha-High-School-Punormilon","Community","Muradpur Adarsha High School Reunion","Muradpur Adarsha High School reunion project.",1],
+["Nagad-Custom-QR-Code","Nagad","Nagad Custom QR Code","Custom QR code project for Nagad.",1],
+["BD-Trade-Licence-Professional","Trade licence","BD Trade Licence Professional","Professional Bangladesh trade licence project.",1],
+["trade-licence-spa","Trade licence","Trade Licence Single Page App","Single-page trade licence application.",1],
+["BD-Trade-Licence","Trade licence","BD Trade Licence","Bangladesh trade licence project.",1]
+].map(([n,c,t,d,l,w])=>({n,c,t,d,l,w}));
 
-    function renderProjects() {
-      const query = searchInput.value.trim().toLowerCase();
-      const visibleProjects = projects.filter((project) => {
-        const matchesCategory = activeFilter === "all" || project.category === activeFilter;
-        const matchesSearch = `${project.name} ${project.category} ${project.description}`.toLowerCase().includes(query);
-        return matchesCategory && matchesSearch;
-      });
+const $=s=>document.querySelector(s),grid=$("#grid"),q=$("#q"),chips=$("#chips"),meta=$("#meta");
+const cats=["All",...new Set(L.map(p=>p.c))];
+let cur="All";
+const ext='target="_blank" rel="noopener noreferrer"';
 
-      projectGrid.innerHTML = visibleProjects.length
-        ? visibleProjects.map((project) => `
-          <article class="card">
-            <div class="card-top">
-              <span class="category">${project.category}</span>
-              <span class="repo-icon" aria-hidden="true">
-                <svg viewBox="0 0 16 16" fill="none"><path d="M5 3.5H4A1.5 1.5 0 0 0 2.5 5v7A1.5 1.5 0 0 0 4 13.5h7a1.5 1.5 0 0 0 1.5-1.5v-1M8 2.5h5.5V8M13.25 2.75 7 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </div>
-            <h2><a href="${project.website || `https://github.com/fahimhossain454558-ai/${encodeURIComponent(project.name)}`}" target="_blank" rel="noopener noreferrer">${project.name}</a></h2>
-            <p>${project.description}</p>
-            <a class="project-link" href="https://github.com/fahimhossain454558-ai/${encodeURIComponent(project.name)}" target="_blank" rel="noopener noreferrer">
-              View repository
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8h9m-3.5-3.5L12.5 8 9 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </article>`).join("")
-        : '<p class="empty">No projects match your search. Try another name or category.</p>';
+chips.innerHTML=cats.map(c=>`<button class="chip" type="button" data-c="${c}" aria-pressed="${c===cur}">${c}<b>${c==="All"?L.length:L.filter(p=>p.c===c).length}</b></button>`).join("");
 
-      document.querySelector("[data-count]").textContent = `(${visibleProjects.length})`;
-      resultMessage.textContent = `${visibleProjects.length} ${visibleProjects.length === 1 ? "project" : "projects"} shown`;
-    }
+function setCat(c){
+  cur=c;
+  chips.querySelectorAll(".chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.c===c));
+  render();
+}
 
-    filters.forEach((button) => {
-      button.addEventListener("click", () => {
-        activeFilter = button.dataset.filter;
-        filters.forEach((filter) => filter.setAttribute("aria-pressed", String(filter === button)));
-        renderProjects();
-      });
-    });
+function render(){
+  const s=q.value.trim().toLowerCase();
+  const v=L.filter(p=>(cur==="All"||p.c===cur)&&`${p.n} ${p.c} ${p.t} ${p.d}`.toLowerCase().includes(s));
+  grid.innerHTML=v.length?v.map(p=>{
+    const url=p.l?U+p.n+"/":G+p.n;
+    return `<a class="card" href="${url}" ${ext}>
+      <div class="top"><span class="cat">${p.c}</span>${p.w?'<span class="badge">New</span>':""}</div>
+      <h3>${p.t}</h3>
+      <p>${p.d}</p>
+      <span class="btn gold">${p.l?"Open live site":"Open on GitHub"}</span>
+    </a>`}).join("")
+    :'<div class="empty"><p>No projects found. Try a different word or category.</p><button class="btn gold" type="button" id="reset">Show all projects</button></div>';
+  meta.textContent=`${v.length} ${v.length===1?"project":"projects"}${cur==="All"?"":" in "+cur}`;
+}
 
-    searchInput.addEventListener("input", renderProjects);
-    document.querySelector("#year").textContent = new Date().getFullYear();
-    renderProjects();
-  </script>
+chips.addEventListener("click",e=>{const b=e.target.closest(".chip");if(b)setCat(b.dataset.c)});
+grid.addEventListener("click",e=>{if(e.target.id==="reset"){q.value="";setCat("All")}});
+q.addEventListener("input",render);
+addEventListener("keydown",e=>{if(e.key==="/"&&document.activeElement!==q){e.preventDefault();q.focus()}});
+$("#year").textContent=new Date().getFullYear();
+render();
+</script>
 </body>
 </html>
